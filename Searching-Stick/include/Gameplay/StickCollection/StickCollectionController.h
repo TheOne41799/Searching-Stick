@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include <thread>
 
 
 namespace Gameplay {
@@ -22,9 +23,13 @@ namespace Gameplay {
             Stick* stick_to_search;
 
             Collection::SearchType search_type;
+            std::thread search_thread;
 
             int number_of_comparisons;
             int number_of_array_access;
+
+            int current_operation_delay;
+            int delay_in_ms;
 
             void initializeSticks();
             float calculateStickWidth();
@@ -35,6 +40,9 @@ namespace Gameplay {
             void resetSticksColor();
             void resetVariables();
             void resetSearchStick();
+
+            void processSearchThreadState();
+            void joinThreads();
 
             void initializeSticksArray();
             float calculateStickHeight(int array_pos);
@@ -61,6 +69,8 @@ namespace Gameplay {
             int getNumberOfArrayAccess();
 
             int getNumberOfSticks();
+
+            int getDelayMilliseconds();
         };
     }
 }

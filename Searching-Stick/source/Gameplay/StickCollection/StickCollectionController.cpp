@@ -92,6 +92,8 @@ namespace Gameplay
 
 		void Gameplay::Collection::StickCollectionContoller::update()
 		{
+			processSearchThreadState();
+
 			collection_view->update();
 
 			for (int i = 0; i < sticks.size(); i++)
@@ -109,7 +111,7 @@ namespace Gameplay
 		{
 			for (int i = 0; i < sticks.size(); i++)
 			{
-				number_of_array_access++;
+				number_of_array_access += 1;
 				number_of_comparisons++;
 
 				Global::ServiceLocator::getInstance()->getSoundService()->playSound(Sound::SoundType::COMPARE_SFX);
@@ -123,6 +125,7 @@ namespace Gameplay
 				else
 				{
 					sticks[i]->stick_view->setFillColor(collection_model->processing_element_color);
+					std::this_thread::sleep_for(std::chrono::milliseconds(current_operation_delay));
 					sticks[i]->stick_view->setFillColor(collection_model->element_color);
 				}
 			}
@@ -152,8 +155,25 @@ namespace Gameplay
 			stick_to_search->stick_view->setFillColor(collection_model->search_element_color);
 		}
 
+		void Gameplay::Collection::StickCollectionContoller::processSearchThreadState()
+		{
+			if (search_thread.joinable() && stick_to_search == nullptr)
+			{
+				joinThreads();
+			}
+		}
+
+		void Gameplay::Collection::StickCollectionContoller::joinThreads()
+		{
+			search_thread.join();
+		}
+
 		void Gameplay::Collection::StickCollectionContoller::reset()
 		{
+			current_operation_delay = 0;
+
+			if (search_thread.joinable()) search_thread.join();
+
 			shuffleSticks();
 			updateSticksPosition();
 			resetSticksColor();
@@ -168,13 +188,17 @@ namespace Gameplay
 			switch (search_type)
 			{
 			case Gameplay::Collection::SearchType::LINEAR_SEARCH:
-				processLinearSearch();
+				//processLinearSearch();
+				current_operation_delay = collection_model->linear_search_delay;
+				search_thread = std::thread(&StickCollectionContoller::processLinearSearch, this);
 				break;
 			}
 		}
 
 		void Gameplay::Collection::StickCollectionContoller::destroy()
 		{
+			if (search_thread.joinable()) search_thread.join();
+
 			for (int i = 0; i < sticks.size(); i++) delete(sticks[i]);
 			sticks.clear();
 
@@ -200,6 +224,11 @@ namespace Gameplay
 		int Gameplay::Collection::StickCollectionContoller::getNumberOfArrayAccess()
 		{
 			return number_of_array_access;
+		}
+
+		int Gameplay::Collection::StickCollectionContoller::getDelayMilliseconds()
+		{
+			return current_operation_delay;
 		}
 	}
 }
