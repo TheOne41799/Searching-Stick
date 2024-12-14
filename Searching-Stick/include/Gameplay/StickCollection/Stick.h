@@ -1,7 +1,6 @@
 #pragma once
 #include "UI/UIElement/RectangleShapeView.h"
 
-
 namespace Gameplay
 {
     namespace Collection

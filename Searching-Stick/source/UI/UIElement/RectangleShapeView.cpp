@@ -1,6 +1,5 @@
 #include "UI/UIElement/RectangleShapeView.h"
 
-
 namespace UI
 {
 	namespace UIElement

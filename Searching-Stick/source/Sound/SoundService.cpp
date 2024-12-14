@@ -1,7 +1,6 @@
 #include "Sound/SoundService.h"
 #include "Global/Config.h"
 
-
 namespace Sound
 {
 	using namespace Global;
@@ -20,7 +19,7 @@ namespace Sound
 	void SoundService::loadSoundFromFile()
 	{
 		if (!buffer_button_click.loadFromFile(Config::button_click_sound_path))
-			printf("Error loading background music file");
+			printf("Error loading button click sfx file");
 
 		if (!buffer_compare_sfx.loadFromFile(Config::compare_sfx_path)) {
 			printf("Error loading compare sfx file");

@@ -49,7 +49,6 @@ namespace UI
             num_sticks_text = new TextView();
             delay_text = new TextView();
             time_complexity_text = new TextView();
-
         }
 
         void GameplayUIController::initializeButton()
@@ -68,12 +67,9 @@ namespace UI
             number_of_comparisons_text->initialize("Comparisons  :  0", sf::Vector2f(comparisons_text_x_position, text_y_position), FontType::BUBBLE_BOBBLE, font_size);
             number_of_array_access_text->initialize("Array Access  :  0", sf::Vector2f(array_access_text_x_position, text_y_position), FontType::BUBBLE_BOBBLE, font_size);
 
-
             num_sticks_text->initialize("Number of Sticks  :  0", sf::Vector2f(num_sticks_text_x_position, text_y_pos2), FontType::BUBBLE_BOBBLE, font_size);
 
-
             delay_text->initialize("Delay  :  0 ms", sf::Vector2f(delay_text_x_position, text_y_pos2), FontType::BUBBLE_BOBBLE, font_size);
-
 
             time_complexity_text->initialize("Time Complexity  :  O(n)", sf::Vector2f(time_complexity_text_x_position, text_y_pos2), FontType::BUBBLE_BOBBLE, font_size);
         }
@@ -119,16 +115,15 @@ namespace UI
         {
             Gameplay::Collection::SearchType new_search_type = ServiceLocator::getInstance()->getGameplayService()->getCurrentSearchType();
 
-
             switch (new_search_type)
             {
             case::Gameplay::Collection::SearchType::LINEAR_SEARCH:
                 search_type_text->setText("Linear Search");
                 break;
 
-                /*case::Gameplay::SearchType::BINARY_SEARCH:
-                    search_type_text->setText("Binary Search");
-                    break;*/
+            case::Gameplay::Collection::SearchType::BINARY_SEARCH:
+                search_type_text->setText("Binary Search");
+                break;
             }
             search_type_text->update();
 
