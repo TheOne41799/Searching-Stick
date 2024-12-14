@@ -16,10 +16,16 @@ namespace Gameplay
 		delete(collection_controller);
 	}
 
+	void GameplayService::initializeRandomSeed()	
+	{
+		std::srand(static_cast<unsigned int>(std::time(nullptr)));
+	}
+
 	void GameplayService::initialize()
 	{
 		gameplay_controller->initialize();
 		collection_controller->initialize();
+		initializeRandomSeed();
 	}
 
 	void GameplayService::update()
