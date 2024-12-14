@@ -5,7 +5,6 @@
 #include "Sound/SoundService.h"
 #include "Gameplay/GameplayService.h"
 
-
 namespace Global
 {
     class ServiceLocator
@@ -35,5 +34,6 @@ namespace Global
         Sound::SoundService* getSoundService();
         UI::UIService* getUIService();
         Gameplay::GameplayService* getGameplayService();
+
     };
 }

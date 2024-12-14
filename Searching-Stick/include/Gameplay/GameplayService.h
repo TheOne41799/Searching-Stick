@@ -3,7 +3,6 @@
 #include "Gameplay/StickCollection/StickCollectionModel.h"
 #include "Gameplay/StickCollection/StickCollectionController.h"
 
-
 namespace Gameplay
 {
 	using namespace Collection;
@@ -27,7 +26,6 @@ namespace Gameplay
 		void render();
 
 		void reset();
-
 		void searchElement(Collection::SearchType search_type);
 
 		Collection::SearchType getCurrentSearchType();
@@ -37,5 +35,6 @@ namespace Gameplay
 		int getNumberOfSticks();
 		int getDelayMilliseconds();
 		sf::String getTimeComplexity();
+
 	};
 }

@@ -4,6 +4,15 @@
 
 namespace Gameplay
 {
+
+
+
+
+	void GameplayController::destroy()
+	{
+		delete(gameplay_view);
+	}
+
 	GameplayController::GameplayController()
 	{
 		gameplay_view = new GameplayView();
@@ -28,11 +37,6 @@ namespace Gameplay
 	void GameplayController::render()
 	{
 		gameplay_view->render();
-	}
-
-	void GameplayController::destroy()
-	{
-		delete(gameplay_view);
 	}
 
 	void GameplayController::reset()

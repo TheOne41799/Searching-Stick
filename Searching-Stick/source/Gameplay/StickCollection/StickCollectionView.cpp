@@ -1,10 +1,7 @@
 #include "Gameplay/StickCollection/StickCollectionView.h"
 
-
-namespace Gameplay 
-{
-	namespace Collection 
-	{
+namespace Gameplay {
+	namespace Collection {
 
 		Gameplay::Collection::StickCollectionView::StickCollectionView()
 		{

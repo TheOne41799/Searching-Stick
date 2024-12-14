@@ -1,7 +1,6 @@
 #include "Global/ServiceLocator.h"
 #include "Main/GameService.h"
 
-
 namespace Global
 {
 	using namespace Graphics;
@@ -62,10 +61,10 @@ namespace Global
 	void ServiceLocator::clearAllServices()
 	{
 		delete(ui_service);
+		delete(gameplay_service);
 		delete(graphic_service);
 		delete(sound_service);
 		delete(event_service);
-		delete(gameplay_service);
 	}
 
 	ServiceLocator* ServiceLocator::getInstance()
@@ -83,4 +82,6 @@ namespace Global
 	UIService* ServiceLocator::getUIService() { return ui_service; }
 
 	Gameplay::GameplayService* ServiceLocator::getGameplayService() { return gameplay_service; }
+
+
 }

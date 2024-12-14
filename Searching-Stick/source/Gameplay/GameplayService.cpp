@@ -1,9 +1,11 @@
-#include "../include/Gameplay/GameplayService.h"
+#include "Gameplay/GameplayService.h"
 #include "Gameplay/GameplayController.h"
-
+#include "Global/ServiceLocator.h"
 
 namespace Gameplay
 {
+	using namespace Global;
+
 	GameplayService::GameplayService()
 	{
 		gameplay_controller = new GameplayController();
@@ -16,7 +18,7 @@ namespace Gameplay
 		delete(collection_controller);
 	}
 
-	void GameplayService::initializeRandomSeed()	
+	void GameplayService::initializeRandomSeed()		//helper function for random seed
 	{
 		std::srand(static_cast<unsigned int>(std::time(nullptr)));
 	}
@@ -25,7 +27,7 @@ namespace Gameplay
 	{
 		gameplay_controller->initialize();
 		collection_controller->initialize();
-		initializeRandomSeed();
+		initializeRandomSeed();		// calling helper function
 	}
 
 	void GameplayService::update()
@@ -45,6 +47,7 @@ namespace Gameplay
 		gameplay_controller->reset();
 		collection_controller->reset();
 	}
+
 
 	void GameplayService::searchElement(Collection::SearchType search_type)
 	{

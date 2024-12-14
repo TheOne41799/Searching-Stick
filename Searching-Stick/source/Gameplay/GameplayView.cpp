@@ -3,7 +3,6 @@
 #include "Global/ServiceLocator.h"
 #include "Global/Config.h"
 
-
 namespace Gameplay
 {
 	using namespace UI::UIElement;
@@ -30,6 +29,7 @@ namespace Gameplay
 
 		background_image->setImageAlpha(background_alpha);
 	}
+
 
 	void GameplayView::update() { background_image->update(); }
 
