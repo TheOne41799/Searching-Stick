@@ -30,7 +30,6 @@ namespace Gameplay
 		background_image->setImageAlpha(background_alpha);
 	}
 
-
 	void GameplayView::update() { background_image->update(); }
 
 	void GameplayView::render() { background_image->render(); }

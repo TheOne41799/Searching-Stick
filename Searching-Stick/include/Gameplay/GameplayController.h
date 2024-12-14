@@ -8,9 +8,7 @@ namespace Gameplay
     class GameplayController
     {
     private:
-
         GameplayView* gameplay_view;
-
 
         void destroy();
 
@@ -23,7 +21,6 @@ namespace Gameplay
         void render();
 
         void reset();
-
     };
 }
 

@@ -35,6 +35,5 @@ namespace Gameplay
 		int getNumberOfSticks();
 		int getDelayMilliseconds();
 		sf::String getTimeComplexity();
-
 	};
 }

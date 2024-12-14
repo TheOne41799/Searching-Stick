@@ -6,6 +6,7 @@
 #include "Global/Config.h"
 #include "Global/ServiceLocator.h"
 
+
 namespace UI
 {
     namespace MainMenu
@@ -14,6 +15,8 @@ namespace UI
         using namespace Main;
         using namespace UIElement;
         using namespace Sound;
+        using namespace Gameplay;
+        using namespace Collection;
         using namespace Graphics;
 
         MainMenuUIController::MainMenuUIController()
@@ -74,15 +77,16 @@ namespace UI
 
         void MainMenuUIController::linearSearchButtonCallback()
         {
-            // GameState will change to gameplay state.
             ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::BUTTON_CLICK);
             GameService::setGameState(GameState::GAMEPLAY);
-            //ServiceLocator::getInstance()->getGameplayService()->searchElement(Gameplay::Collection::SearchType::LINEAR_SEARCH);
+            ServiceLocator::getInstance()->getGameplayService()->searchElement(Gameplay::Collection::SearchType::LINEAR_SEARCH);
         }
 
         void MainMenuUIController::binarySearchButtonCallback()
         {
             ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::BUTTON_CLICK);
+            GameService::setGameState(GameState::GAMEPLAY);
+            ServiceLocator::getInstance()->getGameplayService()->searchElement(Gameplay::Collection::SearchType::BINARY_SEARCH);
         }
 
         void MainMenuUIController::quitButtonCallback()
