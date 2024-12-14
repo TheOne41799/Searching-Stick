@@ -83,11 +83,11 @@ namespace Gameplay
 
 		void Gameplay::Collection::StickCollectionContoller::initialize()
 		{
-
 			collection_model->initialize();
 			initializeSticks();
 
 			reset();
+			time_complexity = "XYZ";
 		}
 
 		void Gameplay::Collection::StickCollectionContoller::update()
@@ -111,7 +111,7 @@ namespace Gameplay
 		{
 			for (int i = 0; i < sticks.size(); i++)
 			{
-				number_of_array_access += 1;
+				number_of_array_access++;
 				number_of_comparisons++;
 
 				Global::ServiceLocator::getInstance()->getSoundService()->playSound(Sound::SoundType::COMPARE_SFX);
@@ -188,7 +188,7 @@ namespace Gameplay
 			switch (search_type)
 			{
 			case Gameplay::Collection::SearchType::LINEAR_SEARCH:
-				//processLinearSearch();
+				time_complexity = "O(n)";
 				current_operation_delay = collection_model->linear_search_delay;
 				search_thread = std::thread(&StickCollectionContoller::processLinearSearch, this);
 				break;
@@ -229,6 +229,11 @@ namespace Gameplay
 		int Gameplay::Collection::StickCollectionContoller::getDelayMilliseconds()
 		{
 			return current_operation_delay;
+		}
+
+		sf::String Gameplay::Collection::StickCollectionContoller::getTimeComplexity()
+		{
+			return time_complexity;
 		}
 	}
 }
